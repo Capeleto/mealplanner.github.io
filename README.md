@@ -1,5 +1,7 @@
 # 🍽️ Meal Planner — Planejador Semanal de Refeições
 
+### [The Meal Planner](mealplanner.github.io)
+
 Next.js 14 (App Router, static export) · TypeScript · Tailwind CSS · i18n PT/EN · light/dark theme · GitHub Pages deploy.
 
 ## ✨ Features
