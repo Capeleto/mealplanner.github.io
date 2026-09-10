@@ -1,0 +1,213 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply antialiased overflow-x-clip;
+  }
+  body {
+    @apply bg-slate-100 dark:bg-slate-900 text-slate-900 dark:text-slate-100
+           transition-colors duration-200 overflow-x-clip;
+  }
+}
+
+@layer components {
+  .editable-input {
+    @apply w-full min-w-0 bg-transparent border-b border-transparent px-1 py-1.5 rounded-sm
+           text-base md:text-sm
+           focus:outline-none focus:border-blue-500 focus:bg-blue-50/50
+           dark:focus:bg-blue-950/30 transition-colors
+           placeholder:italic placeholder:font-light placeholder:text-slate-400
+           dark:placeholder:text-slate-500;
+  }
+  .editable-textarea {
+    @apply w-full min-w-0 rounded border border-slate-200 dark:border-slate-700
+           bg-slate-50 dark:bg-slate-800 p-2.5 text-base md:text-sm resize-y
+           focus:outline-none focus:border-blue-500
+           placeholder:italic placeholder:font-light placeholder:text-slate-400
+           dark:placeholder:text-slate-500;
+  }
+  .print-value {
+    display: none;
+  }
+
+  /* Mobile-first: stacked labeled cards */
+  .section-table {
+    @apply w-full my-4 text-sm border-separate border-spacing-0;
+  }
+  .section-table thead {
+    @apply hidden md:table-header-group;
+  }
+  .section-table tbody {
+    @apply block md:table-row-group;
+  }
+  .section-table tr {
+    @apply mb-3 block rounded-lg border border-slate-200 dark:border-slate-700
+           bg-slate-50/80 dark:bg-slate-800/40 overflow-hidden
+           md:table-row md:mb-0 md:rounded-none md:border-0 md:bg-transparent;
+  }
+  .section-table th {
+    @apply bg-slate-700 dark:bg-slate-800 text-white text-left px-3 py-2.5
+           border border-slate-700 dark:border-slate-800 font-semibold;
+  }
+  .section-table td {
+    @apply grid items-center gap-x-3 gap-y-1 px-3 py-2.5
+           border-b border-slate-200 dark:border-slate-700 align-middle
+           md:table-cell md:px-2.5 md:py-2 md:border;
+    grid-template-columns: minmax(5.25rem, 34%) minmax(0, 1fr);
+    min-height: 2.75rem;
+  }
+  .section-table td:last-child {
+    @apply border-b-0 md:border-b;
+  }
+
+  @screen md {
+    .section-table {
+      @apply border-collapse;
+    }
+    .section-table td {
+      min-height: 0;
+      grid-template-columns: none;
+    }
+  }
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 12mm;
+  }
+
+  html,
+  body {
+    background: #fff !important;
+    color: #0f172a !important;
+    overflow: visible !important;
+    height: auto !important;
+    max-height: none !important;
+  }
+
+  .print\:hidden { display: none !important; }
+
+  .print-value {
+    display: block !important;
+    white-space: pre-wrap !important;
+    overflow-wrap: anywhere !important;
+    word-break: break-word !important;
+    line-height: 1.35 !important;
+    font-size: 9pt !important;
+    color: #0f172a !important;
+  }
+
+  .editable-input,
+  .editable-textarea {
+    display: none !important;
+  }
+
+  #planner-print {
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #fff !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    color: #0f172a !important;
+    overflow: visible !important;
+    height: auto !important;
+  }
+
+  section {
+    break-inside: auto !important;
+    page-break-inside: auto !important;
+  }
+
+  #planner-print,
+  #planner-print h1,
+  #planner-print h2,
+  #planner-print h3,
+  #planner-print p,
+  #planner-print td,
+  #planner-print strong,
+  #planner-print span,
+  #planner-print div {
+    color: #0f172a !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  #planner-print h1 {
+    font-size: 18pt !important;
+    margin: 0 0 2mm !important;
+    border: none !important;
+  }
+
+  #planner-print h2 {
+    font-size: 12pt !important;
+    border-bottom: 1.5pt solid #334155 !important;
+    color: #0f172a !important;
+  }
+
+  .section-table {
+    border-collapse: collapse !important;
+    width: 100% !important;
+    margin: 2mm 0 4mm !important;
+    font-size: 9pt !important;
+  }
+  .section-table thead { display: table-header-group !important; }
+  .section-table tbody { display: table-row-group !important; }
+  .section-table tr {
+    display: table-row !important;
+    margin: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+    overflow: visible !important;
+    break-inside: auto !important;
+    page-break-inside: auto !important;
+  }
+  .section-table th {
+    background: #334155 !important;
+    color: #fff !important;
+    border: 0.6pt solid #334155 !important;
+    font-size: 8pt !important;
+    padding: 1.5mm 2mm !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .section-table td {
+    display: table-cell !important;
+    min-height: 0 !important;
+    height: auto !important;
+    max-height: none !important;
+    grid-template-columns: none !important;
+    border: 0.6pt solid #cbd5e1 !important;
+    padding: 1.5mm 2mm !important;
+    background: #fff !important;
+    vertical-align: top !important;
+    overflow: visible !important;
+    white-space: pre-wrap !important;
+    overflow-wrap: anywhere !important;
+    word-break: break-word !important;
+  }
+  .section-table td > div {
+    display: block !important;
+    overflow: visible !important;
+    min-width: 0 !important;
+    height: auto !important;
+  }
+
+  input[type='checkbox'] {
+    accent-color: #334155;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  /* Must come last so empty rows/sections stay omitted */
+  .print\:hidden,
+  .section-table.print\:hidden,
+  .section-table thead.print\:hidden,
+  .section-table tbody.print\:hidden,
+  .section-table tr.print\:hidden {
+    display: none !important;
+  }
+}
